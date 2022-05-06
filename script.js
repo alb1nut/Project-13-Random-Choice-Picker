@@ -41,14 +41,21 @@ function randomSelect(){
     const interval = setInterval(() =>{
    const randomTag = pickRandomTag()
 
-   hightlightTag(randomTag)
+   highlightTag(randomTag)
    setTimeout(()=>{
-       unHightlightTag(randomTag)
+       unHighlightTag(randomTag)
    },100)
 
     } ,100)
 
-    
+    setTimeout(() => {
+        clearInterval(interval)
+        setInterval(()=>{
+           const randomTag = pickRandomTag()
+
+           highlightTag(randomTag)
+        },100)
+    },times * 100)
 }
 
 
@@ -57,10 +64,10 @@ function pickRandomTag(){
     return tags[Math.floor(Math.random() * tags.length)]
 }
 
-function hightlightTag(tag){
+function highlightTag(tag){
      tag.classList.add('highlight')
     }
-    function unHightlightTag(tag){
+    function unHighlightTag(tag){
     tag.classList.remove('highlight')
 
 }
